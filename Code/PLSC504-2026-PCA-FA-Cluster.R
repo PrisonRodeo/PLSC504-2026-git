@@ -317,10 +317,13 @@ Z <- rbinom(N,1,pnorm(Y/2))
 df <- data.frame(Name=Name,X=X,Y=Y,Z=Z)
 rownames(df)<-df$Name
 
+z_palette<-c("0"="navy","1"="orange")
+plot_colors<-z_palette[as.character(df$Z)]
+
 pdf("ClusterSimPlotOne-26.pdf",6,5)
 par(mar=c(4,4,2,2))
 with(df, plot(X,Y,pch=NA,xlim=c(-1,6),ylim=c(-4,4)))
-with(df, text(X,Y,labels=Name,col=c("navy","orange"),
+with(df, text(X,Y,labels=Name,col=plot_colors,
               cex=0.8))
 legend("topright",bty="n",pch=c(20,20),col=c("navy","orange"),
        legend=c("Z=0","Z=1"))
@@ -329,7 +332,7 @@ dev.off()
 pdf("ClusterSimPlotTwo-26.pdf",3,5)
 par(mar=c(4,4,2,2))
 with(df, plot(X,Y,pch=NA,xlim=c(-1,6),ylim=c(-4,4)))
-with(df, text(X,Y,labels=Name,col=Z+1,
+with(df, text(X,Y,labels=Name,col=plot_colors,
               cex=0.8))
 legend("topright",bty="n",pch=c(20,20),col=c("navy","orange"),
        legend=c("Z=0","Z=1"))
@@ -338,9 +341,9 @@ dev.off()
 pdf("ClusterSimPlotThree-26.pdf",6,3)
 par(mar=c(4,4,2,2))
 with(df, plot(X,Y,pch=NA,xlim=c(-1,6),ylim=c(-4,4)))
-with(df, text(X,Y,labels=Name,col=Z+1,
+with(df, text(X,Y,labels=Name,col=plot_colors,
               cex=0.8))
-legend("topright",bty="n",pch=c(20,20),col=c("black","red"),
+legend("topright",bty="n",pch=c(20,20),col=c("navy","orange"),
        legend=c("Z=0","Z=1"))
 dev.off()
 
